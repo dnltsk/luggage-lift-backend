@@ -5,5 +5,4 @@
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 .DS_Store
-build.gradle
 

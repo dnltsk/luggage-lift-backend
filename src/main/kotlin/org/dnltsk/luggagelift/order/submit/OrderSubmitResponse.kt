@@ -5,6 +5,6 @@ import java.time.Instant
 data class OrderSubmitResponse constructor(
         val orderId: Int,
         val pickUpTimestamp: Instant,
-        val luggageIds: List<Int>
+        val bagTrackIds: List<Int>
 ){
 }

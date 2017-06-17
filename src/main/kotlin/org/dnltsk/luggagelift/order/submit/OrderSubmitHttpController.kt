@@ -17,24 +17,23 @@ class OrderSubmitHttpController {
             @RequestParam pickupTimestamp: Instant,
             @RequestParam numberOfBags: Int
     ): OrderSubmitResponse {
-        //TODO: load metadata from db
-        //TODO: validate selected pickUpTimestamp against suggested ones
+        //TODO: validate selected pickUpTimestamp against suggested ones :D
         return OrderSubmitResponse(
                 orderId = orderId,
                 pickUpTimestamp = pickupTimestamp,
-                luggageIds = registerLuggageIds(numberOfBags)
+                bagTrackIds = registerBagTrackIds(numberOfBags)
         )
     }
 
-    internal fun registerLuggageIds(numberOfBags: Int): List<Int> {
-        val luggageIds = mutableListOf<Int>()
+    internal fun registerBagTrackIds(numberOfBags: Int): List<Int> {
+        val bagTrackIds = mutableListOf<Int>()
         for(i in 1..numberOfBags){
-            luggageIds.add(generateLuggageId())
+            bagTrackIds.add(generateLuggageId())
         }
-        return luggageIds
+        return bagTrackIds
     }
 
-    internal fun generateLuggageId() : Int {
+    private fun generateLuggageId() : Int {
         val min = 100000
         val max = 999999
         return Random().nextInt(max + 1 - min) + min;

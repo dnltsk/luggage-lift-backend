@@ -9,7 +9,7 @@ class OrderSubmitHttpControllerTest{
     fun `correct number of luggageIds are generated`() {
         val controller = OrderSubmitHttpController()
         val fiveBags = 5
-        val fiveLuggageIds = controller.registerLuggageIds(fiveBags)
+        val fiveLuggageIds = controller.registerBagTrackIds(fiveBags)
         assertEquals(fiveLuggageIds.size, fiveBags)
     }
 }

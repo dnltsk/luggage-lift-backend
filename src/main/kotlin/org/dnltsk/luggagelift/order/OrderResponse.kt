@@ -1,17 +1,13 @@
 package org.dnltsk.luggagelift.order
 
+import org.dnltsk.luggagelift.model.Costs
+import java.time.Instant
+
 data class OrderResponse constructor(
         val orderId: Int,
-        val cost: Costs
+        val cost: Costs,
+        val pickUpTimestamps: List<Instant>
 )
 
-data class Costs constructor(
-        val value: Double,
-        val currency: Currency
-)
 
-enum class Currency{
 
-    USD, EUR
-
-}

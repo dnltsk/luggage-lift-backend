@@ -1,11 +1,8 @@
 package org.dnltsk.luggagelift.order
 
-import org.dnltsk.luggagelift.model.Costs
-import org.dnltsk.luggagelift.model.Currency.EUR
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
-import java.time.Instant
 import java.util.*
 
 @RestController
@@ -30,23 +27,9 @@ class OrderHttpController @Autowired constructor(
         )
     }
 
-    @RequestMapping("/order/submit", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
-    fun orderSubmit(
-            @RequestParam orderId : Int,
-            @RequestParam pickupTimestamp: Instant
-    ): OrderResponse{
-        //TODO: load metadata from db
-        //TODO: validate selected pickUpTimestamp against suggested ones
-        return OrderResponse(
-                orderId = orderId,
-                cost = Costs(value = 5.0, currency = EUR),
-                pickUpTimestamps = listOf(pickupTimestamp)
-        )
-    }
-
     internal fun generateOrderId() : Int {
-        val min = 0
-        val max = 100
+        val min = 100000
+        val max = 999999
         return Random().nextInt(max + 1 - min) + min;
     }
 

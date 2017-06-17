@@ -1,14 +1,12 @@
 package org.dnltsk.luggagelift.order.submit
 
 import org.springframework.http.MediaType
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.time.Instant
 import java.util.*
 
 @RestController
+@CrossOrigin(origins = arrayOf("*"))
 class OrderSubmitHttpController {
 
     @RequestMapping("/order/submit", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.APPLICATION_JSON_UTF8_VALUE))

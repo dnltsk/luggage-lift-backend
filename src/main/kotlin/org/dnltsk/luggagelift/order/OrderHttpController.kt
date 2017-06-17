@@ -15,8 +15,8 @@ class OrderHttpController @Autowired constructor(
     @RequestMapping("/order", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
     fun order(
             @RequestParam flightNumber: String,
-            @RequestParam seatNumber: String,
-            @RequestParam pickupAddress: String,
+            @RequestParam(required = false, defaultValue = "12A") seatNumber: String,
+            @RequestParam(required = false, defaultValue = "Winterfeldtstraße 21, 10781 Berlin") pickupAddress: String,
             @RequestParam numberOfBags: Int
     ): OrderResponse {
 

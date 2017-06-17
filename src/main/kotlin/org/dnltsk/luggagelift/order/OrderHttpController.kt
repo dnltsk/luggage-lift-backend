@@ -31,7 +31,7 @@ class OrderHttpController @Autowired constructor(
     }
 
     @RequestMapping("/order/submit", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
-    fun order(
+    fun orderSubmit(
             @RequestParam orderId : Int,
             @RequestParam pickupTimestamp: Instant
     ): OrderResponse{

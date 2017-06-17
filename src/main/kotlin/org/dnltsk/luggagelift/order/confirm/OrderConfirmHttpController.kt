@@ -1,5 +1,7 @@
-package org.dnltsk.luggagelift.order.submit
+package org.dnltsk.luggagelift.order.confirm
 
+import org.dnltsk.luggagelift.luggage.LuggageRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import java.time.Instant
@@ -7,16 +9,19 @@ import java.util.*
 
 @RestController
 @CrossOrigin(origins = arrayOf("*"))
-class OrderSubmitHttpController {
+class OrderConfirmHttpController @Autowired constructor(
+        val luggageRepository: LuggageRepository
+){
 
-    @RequestMapping("/order/submit", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
-    fun orderSubmit(
-            @RequestParam orderId: Int,
-            @RequestParam pickupTimestamp: Instant,
-            @RequestParam numberOfBags: Int
-    ): OrderSubmitResponse {
+    @RequestMapping("/order/confirm", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
+    fun orderConfirm(
+            @RequestParam(required = false, defaultValue = "0") orderId: Int,
+            @RequestParam(required = false, defaultValue = "2017-06-17T00:00:00Z") pickupTimestamp: Instant,
+            @RequestParam(required = false, defaultValue = "2") numberOfBags: Int
+    ): OrderConfirmResponse {
         //TODO: validate selected pickUpTimestamp against suggested ones :D
-        return OrderSubmitResponse(
+        luggageRepository.reset() // new order => restart!
+        return OrderConfirmResponse(
                 orderId = orderId,
                 pickUpTimestamp = pickupTimestamp,
                 bagTrackIds = registerBagTrackIds(numberOfBags)

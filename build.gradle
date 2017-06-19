@@ -17,6 +17,7 @@ apply plugin: 'kotlin'
 apply plugin: 'kotlin-spring'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'jacoco'
 
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
@@ -56,4 +57,16 @@ jar {
 
 task stage {
 	dependsOn build
+}
+
+task codeCoverageReport(type: JacocoReport) {
+	executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+	sourceDirectories = files(sourceSets.main.allSource.srcDirs)
+	classDirectories = files(sourceSets.main.output)
+	reports {
+		xml.enabled true
+		xml.destination "${buildDir}/reports/jacoco/report.xml"
+		html.enabled false
+		csv.enabled false
+	}
 }

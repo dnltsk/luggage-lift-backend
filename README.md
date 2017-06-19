@@ -3,8 +3,12 @@ recoding aviation hackathon
 
 ## build
 
-gradle clean build
+`gradle stage`
 
 ## start
 
-java -jar build/libs/luggage-lift-backend-*.jar
+`java -jar build/libs/luggage-lift-backend-*.jar`
+
+## access
+
+`open http://localhost:8080`

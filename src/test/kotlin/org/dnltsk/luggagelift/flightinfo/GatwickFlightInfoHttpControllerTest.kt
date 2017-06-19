@@ -1,6 +1,7 @@
 package org.dnltsk.luggagelift.flightinfo
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.Ignore
 import org.junit.Test
 import org.springframework.http.HttpStatus.NOT_FOUND
 
@@ -10,7 +11,7 @@ class GatwickFlightInfoHttpControllerTest {
      * sorry but this is an integration test with the live service.
      * please use sample response data here!!!
      */
-    @Test
+    @Test @Ignore //see above
     fun `an easyjet departure can be found`() {
         val info = GatwickFlightInfoHttpController().loadDepartureFlightInfo("EZY8659")
         assertThat(info.body).isEqualTo(
